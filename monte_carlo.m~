@@ -45,12 +45,12 @@ pathloss = repmat(pathloss,1,1,numOfIterations);
 
 rayleigh = load('/home/taylan/Documents/MATLAB/monte/FF');
 ff = rayleigh.FF;
-% FF = zeros(size(pathloss));
+FF = zeros(size(pathloss));
 
 [numOfCells, numOfPix, numOfIterations] = size(pathloss);
 %fast fading is added to each cell and pixel relation for each iteration
 for i=1:numOfIterations
-    FF(:,:,i) = ff(randi(size(ff),numOfCells,numOfUsers));
+    FF(:,:,i) = ff(randi(size(ff),numOfCells,numOfPix));
 end
 
 %totalLoss = pathloss + abs(FF);
@@ -65,17 +65,17 @@ for i=1:numOfIterations
 
 end
 
-RSSmax = max(RSSs); % max RSS in dB
+RSSmax = max(RSSs);                  % max RSS in dB
 
 % Which cell serves which users
 servingCells= zeros(numOfCells,numOfUsers,numOfIterations); % this matrix can be called map between users and cells
 tempRSSs = repmat(RSSmax,numOfCells,1);
 servingCells = (RSSs == tempRSSs);
 
-% After cell association, fast fading is also subtracted from received
-% signal strength
-RSSs = RSSs - abs(FF);
-RSSmax = max(RSSs);
+% After cell association, fast fading is added
+RSSs = RSSs -
+
+
 
 % converting to linear scale
 RSSs_Linear = 10 .^(RSSs / 10);

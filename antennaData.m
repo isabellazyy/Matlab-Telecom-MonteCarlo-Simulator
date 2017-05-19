@@ -6,8 +6,8 @@ function [C] = antennaData()
     numOfAntenna = length(a.lossData);
     % C=zeros(numOfAntenna,13974);
 
-    for i=1:numOfAntenna % 3
-        C(i,:) = a.lossData(i).pathloss'; %(1:10);
+    for i=1:3 %numOfAntenna % 3
+        C(i,:) = a.lossData(i).pathloss(1:10)'; %(1:10);
     end
 end
 % 
