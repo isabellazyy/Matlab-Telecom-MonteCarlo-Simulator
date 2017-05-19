@@ -5,8 +5,8 @@ clc
 %% Monte Carlo code - starting point of the thesis
 % Here, you can change the number of iterations, cells and users,
 % size of the simulation area can also be changed 
-numOfIterations = 3;
-numOfUsers = 3;
+numOfIterations = 30;
+numOfUsers = 50;
 numOfPaths = 10;
 carrierFreq = 2600e6; % Hz
 
@@ -68,7 +68,7 @@ end
 RSSmax = max(RSSs); % max RSS in dB
 
 % Which cell serves which users
-servingCells= zeros(numOfCells,numOfUsers,numOfIterations); % this matrix can be called map between users and cells
+servingCells = zeros(numOfCells,numOfUsers,numOfIterations); % this matrix can be called map between users and cells
 tempRSSs = repmat(RSSmax,numOfCells,1);
 servingCells = (RSSs == tempRSSs);
 
